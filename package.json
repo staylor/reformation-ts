@@ -1,0 +1,42 @@
+{
+  "name": "reformation-ts",
+  "version": "0.0.1-alpha",
+  "description": "Modern CMS",
+  "main": "lib/index.js",
+  "author": "Scott Taylor <scott.c.taylor@mac.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@types/react": "^16.0.40",
+    "@types/react-dom": "^16.0.4",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "devDependencies": {
+    "@types/enzyme": "^3.1.9",
+    "@types/jest": "^22.2.0",
+    "awesome-typescript-loader": "^4.0.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.2",
+    "jest": "^22.4.2",
+    "npm-run-all": "^4.1.2",
+    "react-test-renderer": "^16.2.0",
+    "rimraf": "^2.6.2",
+    "source-map-loader": "^0.2.3",
+    "tslint": "^5.9.1",
+    "tslint-config-prettier": "^1.9.0",
+    "typescript": "^2.7.2",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.10",
+    "webpack-node-externals": "^1.6.0"
+  },
+  "scripts": {
+    "clean": "rimraf lib build",
+    "webpack:dev:server": "webpack --config webpack/webpack.dev.server.js",
+    "webpack:dev:client": "webpack --config webpack/webpack.dev.client.js",
+    "webpack:dev": "npm run clean && npm-run-all webpack:dev:*",
+    "build": "npm run clean && tsc --project tsconfig.build.json",
+    "test": "jest --no-cache",
+    "test-watch": "npm run test -- --watch"
+  }
+}
