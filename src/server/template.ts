@@ -7,6 +7,7 @@ interface Template {
     vendorJSBundles?: string[];
     mainJSBundle?: string;
   };
+  helmet: any;
 }
 
 export default function template({
@@ -15,16 +16,18 @@ export default function template({
   html = '',
   stylesheets = [],
   assets,
+  helmet,
 }: Template): string {
   return `<!DOCTYPE html>
-<html>
+<html ${helmet.htmlAttributes.toString()}>
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+${helmet.title.toString()}${helmet.script.toString()}${helmet.meta.toString()}${helmet.link.toString()}
 ${stylesheets.map(sheet => `<link rel="stylesheet" href="${sheet}" />`).join('')}
 <style>${css}</style>
 </head>
-<body>
+<body ${helmet.bodyAttributes.toString()}>
 <script>window.__emotion = ${JSON.stringify(ids)}</script>
 <main id="main">${html}</main>
 ${assets.vendorJSBundles.map(bundle => `<script defer src="${bundle}"></script>`).join('')}
