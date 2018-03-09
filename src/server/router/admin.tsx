@@ -14,6 +14,7 @@ export default (req: Request, res: Response, next: NextFunction) => {
 
   res.locals.app = app;
   res.locals.staticContext = staticContext;
+  res.locals.stylesheets = ['/css/Draft.css'];
 
   next();
 };

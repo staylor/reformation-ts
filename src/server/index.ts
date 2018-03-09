@@ -20,9 +20,10 @@ app.use(compression());
 // https://github.com/expressjs/morgan#combined
 app.use(morgan('combined'));
 
-const publicDir = path.join(process.cwd(), 'src/public/build');
+const publicDir = path.join(process.cwd(), 'src/public');
 // Setup the public directory so that we can server static assets.
-app.use('/assets', express.static(publicDir));
+app.use(express.static(publicDir));
+app.use('/assets', express.static(publicDir + '/build'));
 
 app.use(cookieParser());
 
