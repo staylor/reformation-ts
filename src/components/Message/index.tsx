@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { messageWrapClass, messageTextClass, dismissButtonClass } from './styled';
 
 interface Props {
   text: string;
@@ -23,9 +24,9 @@ export default class Message extends React.Component<Props, State> {
 
   render() {
     return this.state.hidden ? null : (
-      <div>
-        <p>{this.props.text}</p>
-        <button onClick={this.onClick} />
+      <div className={messageWrapClass}>
+        <p className={messageTextClass}>{this.props.text}</p>
+        <button className={dismissButtonClass} onClick={this.onClick} />
       </div>
     );
   }

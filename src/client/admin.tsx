@@ -1,9 +1,12 @@
-import * as React from 'react';
-import { hydrate } from 'react-dom';
+import React = require('react');
+import ReactDOM = require('react-dom');
+import { hydrate } from 'emotion';
 import { BrowserRouter } from 'react-router-dom';
 import Admin from 'routes/Admin';
 
-hydrate(
+hydrate(window['__emotion']);
+
+ReactDOM.hydrate(
   <BrowserRouter>
     <Admin />
   </BrowserRouter>,

@@ -4,6 +4,8 @@ import express = require('express');
 import morgan = require('morgan');
 import compression = require('compression');
 import cookieParser = require('cookie-parser');
+// inject global styles before any other component tree imports
+import './injectStyles';
 import router from './router';
 
 const app = express();
