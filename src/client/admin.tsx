@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { hydrate } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import App from 'routes/App';
+import Admin from 'routes/Admin';
 
 hydrate(
   <BrowserRouter>
-    <App />
+    <Admin />
   </BrowserRouter>,
   document.getElementById('main')
 );

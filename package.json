@@ -6,10 +6,18 @@
   "author": "Scott Taylor <scott.c.taylor@mac.com>",
   "license": "MIT",
   "dependencies": {
+    "@types/express": "^4.11.1",
     "@types/react": "^16.0.40",
     "@types/react-dom": "^16.0.4",
+    "compression": "^1.7.2",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.2",
+    "morgan": "^1.9.0",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.9",
@@ -19,6 +27,7 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.2",
     "jest": "^22.4.2",
+    "nodemon": "^1.17.1",
     "npm-run-all": "^4.1.2",
     "react-test-renderer": "^16.2.0",
     "rimraf": "^2.6.2",
@@ -28,14 +37,21 @@
     "typescript": "^2.7.2",
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.10",
+    "webpack-manifest-plugin": "^2.0.0-rc.2",
+    "webpack-merge": "^4.1.2",
     "webpack-node-externals": "^1.6.0"
   },
   "scripts": {
-    "clean": "rimraf lib build",
+    "clean": "rimraf build src/public/build",
     "webpack:dev:server": "webpack --config webpack/webpack.dev.server.js",
     "webpack:dev:client": "webpack --config webpack/webpack.dev.client.js",
-    "webpack:dev": "npm run clean && npm-run-all webpack:dev:*",
-    "build": "npm run clean && tsc --project tsconfig.build.json",
+    "webpack:prod:server": "webpack --config webpack/webpack.prod.server.js",
+    "webpack:prod:client": "webpack --config webpack/webpack.prod.client.js",
+    "build:dev": "run-p clean webpack:dev:*",
+    "build:prod": "run-p clean webpack:prod:*",
+    "serve": "node build/main.js",
+    "dev": "nodemon --config nodemon.json --exec run-s build:dev serve",
+    "start": "run-s build:prod serve",
     "test": "jest --no-cache",
     "test-watch": "npm run test -- --watch"
   }

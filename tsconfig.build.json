@@ -5,8 +5,9 @@
   ],
   "exclude": [
     "jest",
-    "lib",
+    "build",
     "node_modules",
+    "./src/client",
     "**/__tests__/**"
   ]
 }

@@ -1,0 +1,4 @@
+{
+  "ext": "ts tsx graphql",
+  "watch": ["src"]
+}

@@ -2,4 +2,5 @@
 /build
 /lib
 /node_modules
+/src/public/build
 /yarn-error.log

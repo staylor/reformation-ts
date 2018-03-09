@@ -2,10 +2,14 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "jsx": "react",
-    "noImplicitAny": true,
+    "lib": [
+      "dom",
+      "es5",
+      "es2016.array.include"
+    ],
     "module": "commonjs",
     "moduleResolution": "node",
-    "outDir": "./lib/",
+    "outDir": "./build",
     "pretty": true,
     "rootDir": "./src",
     "skipLibCheck": true,
