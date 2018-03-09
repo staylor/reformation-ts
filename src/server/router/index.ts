@@ -1,13 +1,13 @@
-import * as fs from 'fs';
-import * as path from 'path';
-import * as express from 'express';
+import fs = require('fs');
+import path = require('path');
+import { Router, Request, Response, NextFunction } from 'express';
 import app from './app';
 import admin from './admin';
 import login from './login';
 import render from './render';
 import setTemplate from './setTemplate';
 
-const router = express.Router();
+const router = Router();
 
 const manifestPath = path.join(process.cwd(), 'src/public/build/manifest.json');
 const manifestJSON = fs.readFileSync(manifestPath, 'utf8');
@@ -16,12 +16,12 @@ const clientAssets = JSON.parse(manifestJSON);
 const bundles = ['main.js', 'admin.js', 'login.js'];
 
 const vendorJSBundles = Object.keys(clientAssets)
-  .filter(file => !bundles.includes(file) && file.indexOf('.map') === -1)
+  .filter(file => bundles.indexOf(file) === -1 && file.indexOf('.map') === -1)
   .map(file => clientAssets[file]);
 
 const pipeline = [render, setTemplate];
 
-const setAssets = entry => (req, res, next) => {
+const setAssets = (entry: string) => (req: Request, res: Response, next: NextFunction) => {
   res.locals.assets = {
     vendorJSBundles,
     mainJSBundle: clientAssets[entry],

@@ -1,9 +1,9 @@
 import 'dotenv/config';
-import * as path from 'path';
-import * as express from 'express';
-import * as morgan from 'morgan';
-import * as compression from 'compression';
-import * as cookieParser from 'cookie-parser';
+import path = require('path');
+import express = require('express');
+import morgan = require('morgan');
+import compression = require('compression');
+import cookieParser = require('cookie-parser');
 import router from './router';
 
 const app = express();
@@ -26,7 +26,7 @@ app.use(cookieParser());
 
 app.use(router);
 
-const port = parseInt(process.env.SERVER_PORT, 10);
+const port = parseInt(process.env.SERVER_PORT, 10) || 3000;
 
 app.listen(port, () => {
   console.log(`App server running on port ${port}...`);

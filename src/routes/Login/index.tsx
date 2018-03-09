@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React = require('react');
 
 const Login = () => <h1>Login</h1>;
 

@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { StaticRouter } from 'react-router';
+import { Request, Response, NextFunction } from 'express';
 import Login from 'routes/Login';
 
-export default (req, res, next) => {
+export default (req: Request, res: Response, next: NextFunction) => {
   const staticContext = {};
 
   const app = (
