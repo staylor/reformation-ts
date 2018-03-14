@@ -8,6 +8,8 @@ interface Template {
     mainJSBundle?: string;
   };
   helmet: any;
+  locale: string;
+  messages: any;
 }
 
 export default function template({
@@ -17,6 +19,8 @@ export default function template({
   stylesheets = [],
   assets,
   helmet,
+  locale = 'en',
+  messages = {},
 }: Template): string {
   return `<!DOCTYPE html>
 <html ${helmet.htmlAttributes.toString()}>
@@ -29,6 +33,7 @@ ${stylesheets.map(sheet => `<link rel="stylesheet" href="${sheet}" />`).join('')
 </head>
 <body ${helmet.bodyAttributes.toString()}>
 <script>window.__emotion = ${JSON.stringify(ids)}</script>
+<script>window.__l10n = ${JSON.stringify({ locale, messages })}</script>
 <main id="main">${html}</main>
 ${assets.vendorJSBundles.map(bundle => `<script defer src="${bundle}"></script>`).join('')}
 ${assets.mainJSBundle ? `<script defer src="${assets.mainJSBundle}"></script>` : ''}

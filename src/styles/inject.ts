@@ -5,7 +5,7 @@ export default function inject() {
   return injectGlobal`
     body {
       background: ${themeUtils.color.background};
-      color: ${themeUtils.color.text};
+      color: ${themeUtils.color.dark};
       font-family: ${themeUtils.font.body};
       font-size: 1em;
       line-height: 1.5;

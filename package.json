@@ -13,10 +13,12 @@
     "emotion-server": "^9.0.2",
     "express": "^4.16.2",
     "morgan": "^1.9.0",
+    "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-emotion": "^9.0.2",
     "react-helmet-async": "^0.0.5",
+    "react-intl": "^2.4.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2"
   },
@@ -29,6 +31,7 @@
     "@types/morgan": "^1.7.35",
     "@types/react": "^16.0.40",
     "@types/react-dom": "^16.0.4",
+    "@types/react-intl": "^2.3.5",
     "@types/react-router": "^4.0.22",
     "@types/react-router-dom": "^4.2.2",
     "awesome-typescript-loader": "^4.0.1",
@@ -45,7 +48,7 @@
     "tslint-config-prettier": "^1.9.0",
     "typescript": "^2.7.2",
     "webpack": "^4.1.1",
-    "webpack-cli": "^2.0.10",
+    "webpack-cli": "^2.0.12",
     "webpack-manifest-plugin": "^2.0.0-rc.2",
     "webpack-merge": "^4.1.2",
     "webpack-node-externals": "^1.6.0"
@@ -59,7 +62,7 @@
     "build:dev": "run-p clean webpack:dev:*",
     "build:prod": "run-p clean webpack:prod:*",
     "serve": "node build/main.js",
-    "dev": "nodemon --config nodemon.json --exec run-s build:dev serve",
+    "dev": "nodemon --config nodemon.json",
     "start": "run-s build:prod serve",
     "test": "jest --no-cache",
     "test-watch": "npm run test -- --watch"

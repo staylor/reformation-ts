@@ -1,11 +1,12 @@
 import React = require('react');
+const { Fragment } = React;
 import Message from 'components/Message';
 
 const NotFound = () => (
-  <section>
-    <h1>NotFound</h1>
+  <Fragment>
+    <h1>Error</h1>
     <Message text="This page does not exist." />
-  </section>
+  </Fragment>
 );
 
 export default NotFound;
