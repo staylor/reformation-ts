@@ -4,6 +4,8 @@ import express = require('express');
 import morgan = require('morgan');
 import compression = require('compression');
 import cookieParser = require('cookie-parser');
+import passport = require('passport');
+import { Strategy, ExtractJwt } from 'passport-jwt';
 // inject global styles before any other component tree imports
 import './injectStyles';
 import router from './router';
@@ -26,6 +28,32 @@ app.use(express.static(publicDir));
 app.use('/assets', express.static(publicDir + '/build'));
 
 app.use(cookieParser());
+
+passport.use(
+  new Strategy(
+    {
+      jwtFromRequest: ExtractJwt.fromExtractors([
+        req => {
+          let token = null;
+          if (req && req.cookies) {
+            token = req.cookies[process.env.TOKEN_KEY];
+          }
+          return token;
+        },
+      ]),
+      secretOrKey: process.env.TOKEN_SECRET,
+    },
+    (jwtPayload, done) => {
+      if (!jwtPayload.userId) {
+        done(new Error('No userId in JWT'), false);
+      } else {
+        done(null, jwtPayload);
+      }
+    }
+  )
+);
+
+app.use(passport.initialize());
 
 app.use(router);
 
