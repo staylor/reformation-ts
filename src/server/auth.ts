@@ -6,8 +6,6 @@ import { Strategy, ExtractJwt } from 'passport-jwt';
 import { Router, Request, Response } from 'express';
 import { getMessages } from 'l10n/utils';
 
-const SALT_ROUNDS = 10;
-
 const exampleUserMap = {
   'scott@scott.pizza': {
     userId: '1',
@@ -60,7 +58,7 @@ router.post('/auth', bodyParser.json(), async (req: Request, res: Response) => {
       throw new Error(messages.loginNotFound);
     }
 
-    const hashed = await bcrypt.hash(user.password, SALT_ROUNDS);
+    const hashed = await bcrypt.hash(user.password, process.env.SALT_ROUNDS);
     const result = await bcrypt.compare(password, hashed);
 
     if (!result) {
