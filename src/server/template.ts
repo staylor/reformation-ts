@@ -28,8 +28,9 @@ export default function template({
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 ${helmet.title.toString()}${helmet.script.toString()}${helmet.meta.toString()}${helmet.link.toString()}
-${stylesheets.map(sheet => `<link rel="stylesheet" href="${sheet}" />`).join('')}
-<style>${css}</style>
+${stylesheets
+    .map(sheet => `<link rel="stylesheet" href="${sheet}" />`)
+    .join('')}<style>${css}</style>
 </head>
 <body ${helmet.bodyAttributes.toString()}>
 <script>window.__emotion = ${JSON.stringify(ids)}</script>

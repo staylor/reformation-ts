@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 import Helmet from 'react-helmet-async';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
+import { TITLE_TEMPLATE } from 'utils/constants';
 import Post from './Post';
 import Home from './Home';
 import NotFound from './NotFound';
@@ -12,9 +13,10 @@ const App: React.SFC = (props: AppProps & InjectedIntlProps) => {
   const { intl: { locale, messages } } = props;
   return (
     <section>
-      <Helmet titleTemplate={'%s - Reformation'}>
+      <Helmet titleTemplate={TITLE_TEMPLATE}>
         <html lang={locale} />
         <title>{messages.siteTitle}</title>
+        <meta property="og:site_name" content={messages.siteTitle} />
       </Helmet>
       <h1>{messages.siteTitle}</h1>
       <nav>

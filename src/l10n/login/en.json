@@ -1,0 +1,10 @@
+{
+  "login": "Log In",
+  "loginEmail": "Email",
+  "loginPassword": "Password",
+  "loginUnauthorized": "You must login to access this area.",
+  "loginRequiredFields": "All fields are required.",
+  "loginEmptyError": "Username or password is empty.",
+  "loginNotFound": "User not found.",
+  "loginCredentialsNotFound": "User not found matching email/password combination"
+}

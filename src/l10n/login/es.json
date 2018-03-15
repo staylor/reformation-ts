@@ -1,0 +1,10 @@
+{
+  "login": "Iniciar sesión",
+  "loginEmail": "Correo electrónico",
+  "loginPassword": "Contraseña",
+  "loginUnauthorized": "Debes iniciar sesión para acceder a esta área.",
+  "loginRequiredFields": "Todos los campos son obligatorios.",
+  "loginEmptyError": "El nombre de usuario o contraseña está vacío.",
+  "loginNotFound": "Usuario no encontrado.",
+  "loginCredentialsNotFound": "Usuario no encontrado combinación de correo electrónico / contraseña coincidente"
+}

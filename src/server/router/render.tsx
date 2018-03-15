@@ -6,13 +6,17 @@ import { extractCritical } from 'emotion-server';
 import { StaticRouter } from 'react-router';
 import { HelmetProvider } from 'react-helmet-async';
 import { IntlProvider } from 'react-intl';
+import { getMessages } from 'l10n/utils';
 
 export default (req: Request, res: Response, next: NextFunction) => {
   const helmetContext = {};
   const staticContext = {};
 
   const locale = req.query.locale || 'en';
-  const messages = require(`l10n/${locale}.json`);
+  let messages = getMessages(locale);
+  if (res.locals.messages) {
+    messages = Object.assign({}, messages, res.locals.messages);
+  }
 
   const { ids, css, html } = extractCritical(
     renderToString(

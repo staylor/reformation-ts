@@ -1,9 +1,10 @@
 import bodyParser = require('body-parser');
 import bcrypt = require('bcrypt');
 import passport = require('passport');
-import jwt from 'jwt-simple';
+import jwt = require('jwt-simple');
 import { Strategy, ExtractJwt } from 'passport-jwt';
 import { Router, Request, Response } from 'express';
+import { getMessages } from 'l10n/utils';
 
 const SALT_ROUNDS = 10;
 
@@ -11,7 +12,7 @@ const exampleUserMap = {
   'scott@scott.pizza': {
     userId: '1',
     email: 'scott@scott.pizza',
-    hash: bcrypt.hash('pizza', SALT_ROUNDS),
+    password: 'pizza',
   },
 };
 
@@ -43,31 +44,35 @@ passport.use(
 
 router.use(passport.initialize());
 
-router.post('/auth', bodyParser.json(), (req: Request, res: Response) => {
+router.post('/auth', bodyParser.json(), async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
 
+    const locale = req.get('Accept-Language') || 'en';
+    const messages = getMessages(locale, 'login');
+
     if (!email || !password) {
-      throw new Error('Username or password not set on request');
+      throw new Error(messages.loginEmptyError);
     }
 
     const user = exampleUserMap[email];
     if (!user) {
-      throw new Error('User not found.');
+      throw new Error(messages.loginNotFound);
     }
 
-    bcrypt.compare(password, user.hash).then(result => {
-      if (!result) {
-        throw new Error('User not found matching email/password combination');
-      }
+    const hashed = await bcrypt.hash(user.password, SALT_ROUNDS);
+    const result = await bcrypt.compare(password, hashed);
 
-      const payload = {
-        userId: user.userId,
-      };
+    if (!result) {
+      throw new Error(messages.loginCredentialsNotFound);
+    }
 
-      const token = jwt.encode(payload, process.env.TOKEN_SECRET);
-      res.json({ token });
-    });
+    const payload = {
+      userId: user.userId,
+    };
+
+    const token = jwt.encode(payload, process.env.TOKEN_SECRET);
+    res.json({ token });
   } catch (e) {
     res.json({ error: e.message });
   }
