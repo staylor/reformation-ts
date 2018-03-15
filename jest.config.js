@@ -4,17 +4,18 @@ module.exports = {
     'tsx',
     'js'
   ],
+  moduleNameMapper: {
+    '^(utils|components)/(.+)': '<rootDir>/src/$1/$2.ts',
+  },
   setupFiles: [
     '<rootDir>/jest/shim.js',
     '<rootDir>/jest/setup.js'
   ],
   snapshotSerializers: ['enzyme-to-json/serializer'],
   testEnvironment: 'node',
-  testMatch: [
-    '**/__tests__/*.(ts|tsx|js)'
-  ],
-  testPathIgnorePatterns: ['/node_modules/', '/lib/'],
+  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
+  testPathIgnorePatterns: ['/node_modules/', '/build/'],
   transform: {
-    '^.+\\.(ts|tsx)$': '<rootDir>/jest/preprocessor.js'
+    '^.+\\.(ts|tsx)$': 'ts-jest'
   },
 };

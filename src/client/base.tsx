@@ -1,6 +1,5 @@
 import React = require('react');
 const { Fragment } = React;
-import ReactDOM = require('react-dom');
 import { hydrate } from 'emotion';
 import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter } from 'react-router-dom';

@@ -4,10 +4,9 @@ import express = require('express');
 import morgan = require('morgan');
 import compression = require('compression');
 import cookieParser = require('cookie-parser');
-import passport = require('passport');
-import { Strategy, ExtractJwt } from 'passport-jwt';
 // inject global styles before any other component tree imports
 import './injectStyles';
+import auth from './auth';
 import router from './router';
 
 const app = express();
@@ -23,38 +22,13 @@ app.use(compression());
 app.use(morgan('combined'));
 
 const publicDir = path.join(process.cwd(), 'src/public');
-// Setup the public directory so that we can server static assets.
+// Setup the public directory to serve static assets.
 app.use(express.static(publicDir));
 app.use('/assets', express.static(publicDir + '/build'));
 
 app.use(cookieParser());
 
-passport.use(
-  new Strategy(
-    {
-      jwtFromRequest: ExtractJwt.fromExtractors([
-        req => {
-          let token = null;
-          if (req && req.cookies) {
-            token = req.cookies[process.env.TOKEN_KEY];
-          }
-          return token;
-        },
-      ]),
-      secretOrKey: process.env.TOKEN_SECRET,
-    },
-    (jwtPayload, done) => {
-      if (!jwtPayload.userId) {
-        done(new Error('No userId in JWT'), false);
-      } else {
-        done(null, jwtPayload);
-      }
-    }
-  )
-);
-
-app.use(passport.initialize());
-
+app.use(auth);
 app.use(router);
 
 const port = parseInt(process.env.SERVER_PORT, 10) || 3000;

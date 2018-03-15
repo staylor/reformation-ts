@@ -1,4 +1,4 @@
-interface Template {
+interface ServerTemplate {
   ids: string[];
   css: string;
   html: string;
@@ -21,7 +21,7 @@ export default function template({
   helmet,
   locale = 'en',
   messages = {},
-}: Template): string {
+}: ServerTemplate): string {
   return `<!DOCTYPE html>
 <html ${helmet.htmlAttributes.toString()}>
 <head>

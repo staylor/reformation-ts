@@ -8,7 +8,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { IntlProvider } from 'react-intl';
 
 export default (req: Request, res: Response, next: NextFunction) => {
-  const context = {};
+  const helmetContext = {};
   const staticContext = {};
 
   const locale = req.query.locale || 'en';
@@ -17,9 +17,9 @@ export default (req: Request, res: Response, next: NextFunction) => {
   const { ids, css, html } = extractCritical(
     renderToString(
       <IntlProvider {...{ locale, messages }} textComponent={Fragment}>
-        <HelmetProvider context={context}>
+        <HelmetProvider context={helmetContext}>
           <StaticRouter location={req.url} context={staticContext}>
-            {res.locals.app}
+            {res.locals.tree}
           </StaticRouter>
         </HelmetProvider>
       </IntlProvider>
@@ -32,7 +32,7 @@ export default (req: Request, res: Response, next: NextFunction) => {
   res.locals.css = css;
   res.locals.html = html;
   res.locals.staticContext = staticContext;
-  res.locals.helmetContext = context;
+  res.locals.helmetContext = helmetContext;
 
   next();
 };
