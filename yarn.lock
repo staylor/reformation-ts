@@ -35,7 +35,11 @@
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
 
-"@types/body-parser@*":
+"@types/bcrypt@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@types/bcrypt/-/bcrypt-1.0.0.tgz#2c523da191db7d41c06d17de235335c985effe9b"
+
+"@types/body-parser@*", "@types/body-parser@^1.16.8":
   version "1.16.8"
   resolved "https://registry.yarnpkg.com/@types/body-parser/-/body-parser-1.16.8.tgz#687ec34140624a3bec2b1a8ea9268478ae8f3be3"
   dependencies:
@@ -88,9 +92,17 @@
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.6.2.tgz#12cfaba693ba20f114ed5765467ff25fdf67ddb0"
 
+"@types/isomorphic-fetch@^0.0.34":
+  version "0.0.34"
+  resolved "https://registry.yarnpkg.com/@types/isomorphic-fetch/-/isomorphic-fetch-0.0.34.tgz#3c3483e606c041378438e951464f00e4e60706d6"
+
 "@types/jest@^22.2.0":
   version "22.2.0"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-22.2.0.tgz#55ce83139f7ad1b48b414c3927746614c6963c0f"
+
+"@types/js-cookie@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@types/js-cookie/-/js-cookie-2.1.0.tgz#a8916246aa994db646c66d54c854916213300a51"
 
 "@types/jsonwebtoken@*":
   version "7.2.5"
@@ -2273,6 +2285,12 @@ emotion-server@^9.0.2:
   dependencies:
     create-emotion-server "^9.0.2"
 
+emotion-theming@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/emotion-theming/-/emotion-theming-9.0.0.tgz#3b7dd07ceae70aab98280e81df8bfd7f9254d5c3"
+  dependencies:
+    hoist-non-react-statics "^2.3.1"
+
 emotion-utils@^9.0.1:
   version "9.0.1"
   resolved "https://registry.yarnpkg.com/emotion-utils/-/emotion-utils-9.0.1.tgz#db1034410d8ac4e399845d346471c3f2db5124d7"
@@ -3261,7 +3279,7 @@ hoek@4.x.x:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-4.2.1.tgz#9634502aa12c445dd5a7c5734b572bb8738aacbb"
 
-hoist-non-react-statics@^2.3.0:
+hoist-non-react-statics@^2.3.0, hoist-non-react-statics@^2.3.1:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.0.tgz#d2ca2dfc19c5a91c5a6615ce8e564ef0347e2a40"
 

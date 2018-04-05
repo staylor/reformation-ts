@@ -3,5 +3,5 @@ const commonConfig = require('./webpack.common.client');
 
 module.exports = merge(commonConfig, {
   mode: 'development',
-  devtool: 'source-map',
+  devtool: false,
 });
